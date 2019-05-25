@@ -1555,7 +1555,7 @@ Chat.loadPlugins = function () {
 		Object.assign(commands, plugin2.commands);
 		Object.assign(pages, plugin2.pages);
 
-		if (plugin.destroy) Chat.destroyHandlers.push(plugin2.destroy);
+		if (plugin2.destroy) Chat.destroyHandlers.push(plugin2.destroy);
 
 		if (plugin2.chatfilter) Chat.filters.push(plugin2.chatfilter);
 		if (plugin2.namefilter) Chat.namefilters.push(plugin2.namefilter);
