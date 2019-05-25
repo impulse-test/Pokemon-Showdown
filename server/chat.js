@@ -1588,25 +1588,29 @@ Chat.loadPlugins = function () {
 		if (plugin.loginfilter) Chat.loginfilters.push(plugin.loginfilter);
 		if (plugin.nicknamefilter) Chat.nicknamefilters.push(plugin.nicknamefilter);
 	}
-   // Load Impulse Plugins
+      // Install plug-in commands and chat filters
 
-	let impulseFiles = FS('server/impulse/chat-plugins/').readdirSync();
+	// info always goes first so other plugins can shadow it
+	let files2 = FS('server/impulse/chat-plugins/').readdirSync();
+	files2 = files2.filter(file => file !== 'components.js');
+	files2.unshift('components.js');
 
-	for (const file of impulseFiles) {
+	for (const file of files2) {
 		if (file.substr(-3) !== '.js') continue;
-		const plugin = require(`./impulse/chat-plugins/${file}`);
+		const plugin2 = require(`./impulse/chat-plugins/${file}`);
 
-		Object.assign(commands, plugin.commands);
-		Object.assign(pages, plugin.pages);
+		Object.assign(commands, plugin2.commands);
+		Object.assign(pages, plugin2.pages);
 
-		if (plugin.destroy) Chat.destroyHandlers.push(plugin.destroy);
+		if (plugin.destroy) Chat.destroyHandlers.push(plugin2.destroy);
 
-		if (plugin.chatfilter) Chat.filters.push(plugin.chatfilter);
-		if (plugin.namefilter) Chat.namefilters.push(plugin.namefilter);
-		if (plugin.hostfilter) Chat.hostfilters.push(plugin.hostfilter);
-		if (plugin.loginfilter) Chat.loginfilters.push(plugin.loginfilter);
-		if (plugin.nicknamefilter) Chat.nicknamefilters.push(plugin.nicknamefilter);
+		if (plugin2.chatfilter) Chat.filters.push(plugin2.chatfilter);
+		if (plugin2.namefilter) Chat.namefilters.push(plugin2.namefilter);
+		if (plugin2.hostfilter) Chat.hostfilters.push(plugin2.hostfilter);
+		if (plugin2.loginfilter) Chat.loginfilters.push(plugin2.loginfilter);
+		if (plugin2.nicknamefilter) Chat.nicknamefilters.push(plugin2.nicknamefilter);
 	}
+
 };
 
 Chat.destroy = function () {
