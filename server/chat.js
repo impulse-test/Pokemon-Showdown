@@ -55,20 +55,6 @@ const BROADCAST_TOKEN = '!';
 
 const TRANSLATION_DIRECTORY = 'translations/';
 
-function parseEmoticons(message, room) {
-	if (emoteRegex.test(message)) {
-		let size = 50;
-		let lobby = Rooms(`lobby`);
-		if (lobby && lobby.emoteSize) size = lobby.emoteSize;
-		message = Server.parseMessage(message).replace(emoteRegex, function (match) {
-			return `<img src="${emoticons[match]}" title="${match}" height="${((room && room.emoteSize) ? room.emoteSize : size)}" width="${((room && room.emoteSize) ? room.emoteSize : size)}">`;
-		});
-		return message;
-	}
-	return false;
-}
-Server.parseEmoticons = parseEmoticons;
-
 /** @type {typeof import('../lib/fs').FS} */
 const FS = require(/** @type {any} */('../.lib-dist/fs')).FS;
 
@@ -1607,8 +1593,8 @@ Chat.loadPlugins = function () {
 	const impulseFiles = FS('server/impulse/chat-plugins/').readdirSync();
 
 	for (const file of impulseFiles) {
-		if (file.substr(-3) !== '.js') return;
-		const plugin = require(`./server/impulse/chat-plugins/${file}`);
+		if (file.substr(-3) !== '.js') continue;
+		const plugin = require(`./impulse/chat-plugins/${file}`);
 
 		Object.assign(commands, plugin.commands);
 		Object.assign(pages, plugin.pages);
