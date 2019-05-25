@@ -11,6 +11,30 @@ exports.port = 8000;
  */
 exports.bindaddress = '0.0.0.0';
 
+/* add system operators */
+exports.special = ['princesky'];
+
+/* serverIp used for custom avatars */
+exports.serverIp = "impulsereborn.herokuapp.com";
+
+/* X amount of players needed in tournaments to earn rewards */
+exports.sizeRequiredToEarn = 4;
+
+/****************************
+* Used to set expTimer ******
+* X amount of timer passed **
+* after last message before *
+* user can earn exp  ********
+* default to 15 seconds *****
+*****************************/
+exports.expTimer = 15000;
+
+/* Used to rename plugins */
+exports.serverName = "Impulse";
+
+/* Used to enable poof plugin */
+exports.poof = false;
+
 /**
  * workers - the number of networking child processes to spawn
  *   This should be no greater than the number of threads available on your
@@ -475,6 +499,17 @@ exports.grouplist = [
 		gamemanagement: true,
 		exportinputlog: true,
 		editprivacy: true,
+      // impulse
+      profile: true,
+      avatar: true,
+      guild: true,
+      poof: true,
+      economy: true,
+      icon: true,
+      badge: true,
+      customcolor: true,
+      dev: true,
+      avatar: true,
 	},
 	{
 		symbol: '#',
@@ -541,6 +576,13 @@ exports.grouplist = [
 		alts: '@u',
 		tournaments: true,
 		game: true,
+      // Impulse
+      economy: true,
+      badge: true,
+      icon: true,
+      customcolor: true,
+      profile: true,
+      poof: true,
 	},
 	{
 		symbol: '%',
