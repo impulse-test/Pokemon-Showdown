@@ -1590,7 +1590,7 @@ Chat.loadPlugins = function () {
 	}
    // Load Impulse Plugins
 
-	const impulseFiles = FS('server/impulse/chat-plugins/').readdirSync();
+	let impulseFiles = FS('server/impulse/chat-plugins/').readdirSync();
 
 	for (const file of impulseFiles) {
 		if (file.substr(-3) !== '.js') continue;
