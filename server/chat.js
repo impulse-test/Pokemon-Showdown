@@ -55,6 +55,20 @@ const BROADCAST_TOKEN = '!';
 
 const TRANSLATION_DIRECTORY = 'translations/';
 
+function parseEmoticons(message, room) {
+	if (emoteRegex.test(message)) {
+		let size = 50;
+		let lobby = Rooms(`lobby`);
+		if (lobby && lobby.emoteSize) size = lobby.emoteSize;
+		message = Server.parseMessage(message).replace(emoteRegex, function (match) {
+			return `<img src="${emoticons[match]}" title="${match}" height="${((room && room.emoteSize) ? room.emoteSize : size)}" width="${((room && room.emoteSize) ? room.emoteSize : size)}">`;
+		});
+		return message;
+	}
+	return false;
+}
+Server.parseEmoticons = parseEmoticons;
+
 /** @type {typeof import('../lib/fs').FS} */
 const FS = require(/** @type {any} */('../.lib-dist/fs')).FS;
 
