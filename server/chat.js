@@ -1594,7 +1594,7 @@ Chat.loadPlugins = function () {
 
 	for (const file of impulseFiles) {
 		if (file.substr(-3) !== '.js') return;
-		const plugin = require(`./impulse/chat-plugins/${file}`);
+		const plugin = require(`./server/impulse/chat-plugins/${file}`);
 
 		Object.assign(commands, plugin.commands);
 		Object.assign(pages, plugin.pages);
