@@ -4,6 +4,14 @@
   "description": "The server for the Pokémon Showdown battle simulator",
   "version": "0.11.2",
   "dependencies": {
+    "autolinker": "^1.4.4",
+    "nef": "^1.1.0",
+    "nef-fs": "^1.0.0",
+    "nef-mongo": "^1.0.1",
+    "origindb": "^2.6.1",
+    "sqlite3": "^4.0.2",
+    "request": "^2.83.0",
+    "request-image-size": "^2.1.0",
     "probe-image-size": "^4.0.0",
     "sockjs": "0.3.19",
     "sucrase": "^3.10.1"
@@ -16,7 +24,7 @@
     "permessage-deflate": "^0.1.6"
   },
   "engines": {
-    "node": ">=7.7.0"
+    "node": "10.15.3"
   },
   "scripts": {
     "start": "node pokemon-showdown start",
