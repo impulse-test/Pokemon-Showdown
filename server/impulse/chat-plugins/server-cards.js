@@ -414,7 +414,7 @@ exports.commands = {
 				Db.userpacks.set(user.userid, Db.userpacks.get(user.userid, []).concat([target]));
 				return this.parse(`/psgo packs pending`);
 			},
-			buyhelp: ['/psgo shop buy [pack] - Cost 5 ' + currencyPlural + '  per pack.'],
+			buyhelp: [`/psgo shop buy [pack] - Cost 5 ${currencyName} per pack.`],
 			// All packs are added by default.
 			'': 'display',
 			display: function (target, room, user) {
